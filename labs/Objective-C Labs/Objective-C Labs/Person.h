@@ -38,13 +38,13 @@
 //// Part 4
 @interface Person ()
 {
-    NSUInteger _favoritesRanking;
+    NSUInteger _rating;
 }
 
-- (NSUInteger)favoritesRanking;
-- (void)setFavoritesRanking:(NSUInteger)newValue;
+- (NSUInteger)rating;
+- (void)setRating:(NSUInteger)newValue;
 
-- (NSString *)favoritesRankingStars;
+- (NSString *)ratingStars;
 
 @end
 ////

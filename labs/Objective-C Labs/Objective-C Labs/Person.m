@@ -62,30 +62,30 @@
 
 //// Part 4
 
-const NSUInteger MaxRanking = 5;
+const NSUInteger MaxRating = 5;
 
-- (NSUInteger)favoritesRanking
+- (NSUInteger)rating
 {
-    return _favoritesRanking;
+    return _rating;
 }
 
-- (void)setFavoritesRanking:(NSUInteger)newValue
+- (void)setRating:(NSUInteger)newValue
 {
-    _favoritesRanking = newValue > MaxRanking ? MaxRanking : newValue;
+    _rating = newValue > MaxRating ? MaxRating : newValue;
 }
 
-- (NSString *)favoritesRankingStars
+- (NSString *)ratingStars
 {
     
-    if ([self favoritesRanking] == 0)  return @"-";
+    if ([self rating] == 0)  return @"-";
 
-    return [@"*****" substringToIndex:[self favoritesRanking]];
+    return [@"*****" substringToIndex:[self rating]];
 }
 
 - (NSString *)description
 {
-    NSString *stars = [self favoritesRankingStars];
-    stars = [stars stringByPaddingToLength:MaxRanking
+    NSString *stars = [self ratingStars];
+    stars = [stars stringByPaddingToLength:MaxRating
                                 withString:@" "
                            startingAtIndex:0];
     
