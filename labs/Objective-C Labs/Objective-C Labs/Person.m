@@ -2,27 +2,33 @@
 
 @implementation Person
 
-
-// NEW
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
-    if (!(self = [super init])) return nil;
-    
-    _firstName = [dictionary objectForKey:@"firstName"];
-    _lastName = [dictionary objectForKey:@"lastName"];
-    _age = [[dictionary objectForKey:@"age"] intValue];
-    
-    return self;
+- (NSString *)firstName {
+    return _firstName;
 }
-//
+- (void)setFirstName:(NSString *)newValue {
+    _firstName = [newValue copy];
+}
+
+- (NSString *)lastName {
+    return _lastName;
+}
+- (void)setLastName:(NSString *)newValue {
+    _lastName = [newValue copy];
+}
+
+- (int)age {
+    return _age;
+}
+- (void)setAge:(int)newValue {
+    _age = newValue;
+}
 
 //// Part 2
-- (id)initWithFirstName:(NSString *)firstName
-               lastName:(NSString *)lastName
-                    age:(int)age
+- (instancetype)initWithFirstName:(NSString *)firstName
+                         lastName:(NSString *)lastName
+                              age:(int)age
 {
-    self = [super init];
-    if (!self) return nil;
+    if (!(self = [super init])) return nil;
     
     _firstName = [firstName copy];
     _lastName = [lastName copy];
@@ -35,13 +41,7 @@
 {
     return [NSString stringWithFormat:@"%@ %@", [self firstName], [self lastName]];
 }
-
-//- (NSString *)description
-//{
-//    return [NSString stringWithFormat:@"name: %@, age: %d",
-//            [self fullName], [self age]];
-//}
-//// Part 2
+////
 
 
 //// Part 3
@@ -64,19 +64,15 @@
 
 const NSUInteger MaxRating = 5;
 
-- (NSUInteger)rating
-{
+- (NSUInteger)rating {
     return _rating;
 }
-
-- (void)setRating:(NSUInteger)newValue
-{
+- (void)setRating:(NSUInteger)newValue {
     _rating = newValue > MaxRating ? MaxRating : newValue;
 }
 
 - (NSString *)ratingStars
 {
-    
     if ([self rating] == 0)  return @"-";
 
     return [@"*****" substringToIndex:[self rating]];
@@ -94,34 +90,5 @@ const NSUInteger MaxRating = 5;
 
 ////
 
-- (NSString *)firstName
-{
-    return _firstName;
-}
-
-- (void)setFirstName:(NSString *)newValue
-{
-    _firstName = newValue;
-}
-
-- (NSString *)lastName
-{
-    return _lastName;
-}
-
-- (void)setLastName:(NSString *)newValue
-{
-    _lastName = newValue;
-}
-
-- (int)age
-{
-    return _age;
-}
-
-- (void)setAge:(int)newValue
-{
-    _age = newValue;
-}
 
 @end
