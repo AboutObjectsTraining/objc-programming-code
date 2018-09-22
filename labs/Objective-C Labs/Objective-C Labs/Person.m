@@ -24,9 +24,9 @@
 }
 
 //// Part 2
-- (instancetype)initWithFirstName:(NSString *)firstName
-                         lastName:(NSString *)lastName
-                              age:(int)age
+- (id)initWithFirstName:(NSString *)firstName
+               lastName:(NSString *)lastName
+                    age:(int)age
 {
     if (!(self = [super init])) return nil;
     

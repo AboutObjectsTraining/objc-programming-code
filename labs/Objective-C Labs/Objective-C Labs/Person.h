@@ -17,9 +17,9 @@
 - (void)setAge:(int)newValue;
 
 //// Part 2
-- initWithFirstName:(NSString *)firstName
-           lastName:(NSString *)lastName
-                age:(int)age;
+- (id)initWithFirstName:(NSString *)firstName
+               lastName:(NSString *)lastName
+                    age:(int)age;
 
 - (NSString *)fullName;
 
