@@ -2,10 +2,6 @@
 #import "Person.h"
 
 @interface PersonTests : AOITestCase
-//{
-//    Person *_person;
-//}
-
 @end
 
 

@@ -45,7 +45,7 @@
 
 - (void)testPart03
 {
-    NSLog(@"%@", [[_owner dogs] LAB_fancyDescription]);
+    NSLog(@"%@", [[_owner dogs] lab_fancyDescription]);
 }
 
 

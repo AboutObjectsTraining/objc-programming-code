@@ -2,6 +2,6 @@
 
 @interface NSArray (LABAdditions)
 
-- (NSString *)LAB_fancyDescription;
+- (NSString *)lab_fancyDescription;
 
 @end

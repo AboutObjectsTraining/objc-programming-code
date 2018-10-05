@@ -2,7 +2,7 @@
 
 @implementation NSArray (LABAdditions)
 
-- (NSString *)LAB_fancyDescription
+- (NSString *)lab_fancyDescription
 {
     NSMutableString *s = [NSMutableString stringWithFormat:
                           @"%@ of %ld elements (",
