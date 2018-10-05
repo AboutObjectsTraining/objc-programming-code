@@ -29,9 +29,9 @@ void ShowConversion(float temperature, ConversionType type)
 {
     printf("%.1f degrees %s is %.1f degrees %s\n",
            temperature,
-           (type == CelsiusToFahrenheit ? "Celsius" : "Fahrenheit"),
+           type == CelsiusToFahrenheit ? "Celsius" : "Fahrenheit",
            ConvertTemperature(temperature, type),
-           (type == FahrenheitToCelsius ? "Celsius" : "Fahrenheit"));
+           type == CelsiusToFahrenheit ? "Fahrenheit" : "Celsius");
 }
 
 float ConvertTemperature(float temperature, ConversionType type)
