@@ -8,27 +8,59 @@
 @interface Tests : XCTestCase
 @end
 
+// To use the runtime C API to send a message, you must initialize a
+// function pointer with a cast to an appopriate variant of objc_msgSend.
+//
+id (* send_msg)(id, SEL, ...) = (id (*)(id, SEL, ...))objc_msgSend;
+
 @implementation Tests
 
 - (void)setUp    { putchar('\n'); }
 - (void)tearDown { putchar('\n'); }
 
+- (void)testMessageSendWithString
+{
+    NSString *word = @"hello";
+    
+    // Obtaining a selector (string representation) from a method symbol
+    SEL capitalizedString = @selector(capitalizedString);
+    
+    // Sending a message via the runtime C API
+    NSString *capitalizedWord = send_msg(word, capitalizedString);
+    NSLog(@"%@", capitalizedWord);
+}
+
+- (void)testMessageExpressionWithString
+{
+    NSString *word = @"world";
+    
+    // Using an Objective-C message expression
+    NSString *capitalizedWord = [word capitalizedString];
+    NSLog(@"%@", capitalizedWord);
+}
+
 - (void)testMessageSend
 {
+    // Allocating and initializing an instance of Person
     Person *fred = [[Person alloc] initWithFirstName:@"Fred"
                                             lastName:@"Smith"
                                                  age:32];
     
-    id (* sendMessage)(id, SEL, ...) = (id (*)(id, SEL, ...))objc_msgSend;
+    // Obtaining a selector (string representation) from a method symbol
     SEL print = @selector(print);
+    send_msg(fred, print);
     
-    sendMessage(fred, print);
-    sendMessage(fred, @selector(setFirstName:), @"Chip");
+    send_msg(fred, @selector(setFirstName:), @"Chip");
+    send_msg(fred, print);
+    
+    [fred setFirstName:@"Frederick"];
     [fred print];
     
-    Class PersonClass = [Person class];
-    Person *sue = sendMessage(PersonClass, @selector(alloc));
-    sue = sendMessage(sue, @selector(initWithFirstName:lastName:age:), @"Sue", @"Yu", 42);
+    // Allocating and initializing an instance
+    Person *sue = send_msg(send_msg(Person.class, @selector(alloc)),
+                           @selector(initWithFirstName:lastName:age:),
+                           @"Sue", @"Yu", 42);
+    
     [sue print];
 }
 
