@@ -27,10 +27,11 @@ void RunPointers02(void)
     PRINT_FUNCTION_NAME;
     
     Person *p1 = InitPerson(AllocPerson(), "Fred", "Smith", 32);
-    const char *description = CreateDescriptionOfPerson(p1);
+    char *description = CreateDescriptionOfPerson(p1);
     
     printf("%s\n", description);
     
+    free(description);
     free(p1);
 }
 
